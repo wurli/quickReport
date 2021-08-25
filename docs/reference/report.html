@@ -86,7 +86,7 @@ existing Excel template - see 'Details' for more information." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -110,7 +110,12 @@ existing Excel template - see 'Details' for more information." />
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/wurli/quickReport/">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -125,7 +130,7 @@ existing Excel template - see 'Details' for more information." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Create an Excel Report</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/wurli/quickReport/blob/master/R/report_from_.R'><code>R/report_from_.R</code></a></small>
     <div class="hidden name"><code>report.Rd</code></div>
     </div>
 
@@ -227,6 +232,11 @@ By' fields in the workbook.</p></td>
 use as templates for the coversheet/data sheets. By default these will
 respectively be the first and second sheets of the template workbook.</p></td>
     </tr>
+    <tr>
+      <th>datasets</th>
+      <td><p>A named list containing data.frames. The names will be used
+as worksheet names in the final report.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -258,7 +268,7 @@ where the data should appear. You can change the marker value using
 
       <footer>
       <div class="copyright">
-  <p>Developed by First Last.</p>
+  <p>Developed by Jacob Scott.</p>
 </div>
 
 <div class="pkgdown">

@@ -84,7 +84,7 @@ place, we can create a fairly decent report by simply running
 `report_from_sql()`:
 ```{r}
 report_1 <- nice_filename(dir = "Outputs")
-report_from_sql(report_1, sql_connection = db)
+report_from_sql(report_1, sql_connection = db, file_template = NULL)
 ```
 
 We can see that a file ``r report_1`` has been created. Let's check the report
@@ -112,7 +112,8 @@ transformers <- list(
 # Generate a second report using transformations
 report_2 <- nice_filename(dir = "Outputs")
 report_from_sql(
-  report_2, sql_connection = db, transformers = transformers
+  report_2, sql_connection = db, transformers = transformers, 
+  file_template = NULL
 )
 ```
 
