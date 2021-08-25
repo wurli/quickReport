@@ -4,6 +4,10 @@
 # quickReport
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/wurli/quickReport/workflows/R-CMD-check/badge.svg)](https://github.com/wurli/quickReport/actions)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/quickReport)](https://CRAN.R-project.org/package=quickReport)
 <!-- badges: end -->
 
 {quickReport} provides a set of functions that enable you to painlessly
@@ -21,24 +25,24 @@ first worksheet will be used as the coversheet template while the second
 will be used as the template for each sheet containing data. By default,
 data will be placed at cell C5, but you can specify a different cell by
 entering ‘!data’ at the desired location in the template. See
-`vignette("templates")` for more information.
+`?report_from_sql` for more information.
 
 ## Transformers
 
-You may wish to apply some adjustments to your data before writing to
-Excel. Both `report_from_sql()` and `report_from_data()` have a
-`transformers` argument which allows you to pass a list of functions
-which can be applied to the data in different worksheets before writing
-the file.
+You may wish to apply some adjustments to your data between SQL and
+Excel using R. Both `report_from_sql()` and `report_from_data()` have a
+`transformers` argument which enables this; simply pass a list of
+functions, named according to the sheets in the report, and these will
+be applied before the workbook is written. See
+`vignette("report_example")` for an example.
 
 ## Projects
 
 {quickReport} provides a function `create_report()` which can be used to
 quickly set up a new report in its own R project. I recommend setting up
-reports using `create_report()` function because this will gently guide
-you towards a clean, standardised way of creating reports with a
-sensible folder structure (e.g., all reports end up in an `Outputs`
-folder at the top level of the project).
+reports in this way because it will gently guide you towards a clean,
+standardised project with a sensible folder structure (e.g., all reports
+end up in an `Outputs` folder at the top level of the project).
 
 # Installation
 
@@ -58,6 +62,6 @@ in Excel by using {quickReport}.
 # Credit
 
 {quickReport} relies almost entirely on the wonderful package
-[{openxlsx}](https://ycphs.github.io/openxlsx/). If you’re looking for a
-more flexible way of manipulating Excel files from R, I highly recommend
-this package.
+[{openxlsx}](https://ycphs.github.io/openxlsx/). I highly recommend it
+if you’re looking for a more flexible way of manipulating Excel files
+from R.

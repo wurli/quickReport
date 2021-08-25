@@ -82,6 +82,7 @@ We now have what we need to create a {quickReport} report from SQL: a
 project with the correct file structure and an SQL database. With these in
 place, we can create a fairly decent report by simply running
 `report_from_sql()`:
+<!--
 ```{r}
 report_1 <- nice_filename(dir = "Outputs")
 report_from_sql(report_1, sql_connection = db, file_template = NULL)
@@ -123,3 +124,4 @@ confirm that the transformations have been applied:
 read_worksheets(report_2)[-1]
 ```
 
+-->
