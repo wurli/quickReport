@@ -62,7 +62,14 @@
   </ul>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/wurli/quickReport/">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -78,7 +85,7 @@
       <h1 data-toc-skip>Report Example</h1>
             
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/wurli/quickReport/blob/master/vignettes/report_example.Rmd"><code>vignettes/report_example.Rmd</code></a></small>
       <div class="hidden name"><code>report_example.Rmd</code></div>
 
     </div>
@@ -87,7 +94,7 @@
     
 <p>This vignette will run through the steps needed to produce an Excel report from SQL using {quickReport}. We’ll be looking at folder structures a bit, so we’ll load {fs} too:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">quickReport</span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/wurli/quickReport">quickReport</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://fs.r-lib.org">fs</a></span><span class="op">)</span></code></pre></div>
 <div id="setting-up-a-report-project" class="section level1">
 <h1 class="hasAnchor">
@@ -154,21 +161,21 @@
 <p>We now have what we need to create a {quickReport} report from SQL: a project with the correct file structure and an SQL database. With these in place, we can create a fairly decent report by simply running <code><a href="../reference/report_from_sql.html">report_from_sql()</a></code>:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">report_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/nice_filename.html">nice_filename</a></span><span class="op">(</span>dir <span class="op">=</span> <span class="st">"Outputs"</span><span class="op">)</span>
-<span class="fu"><a href="../reference/report_from_sql.html">report_from_sql</a></span><span class="op">(</span><span class="va">report_1</span>, sql_connection <span class="op">=</span> <span class="va">db</span><span class="op">)</span>
+<span class="fu"><a href="../reference/report_from_sql.html">report_from_sql</a></span><span class="op">(</span><span class="va">report_1</span>, sql_connection <span class="op">=</span> <span class="va">db</span>, file_template <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; -- Creating new Excel report 2021-08-25-jscott4.xlsx ---------------------------</span>
-<span class="co">#&gt; * Reading SQL scripts from SQL</span>
-<span class="co">#&gt; * Reading 3 datasets from :memory:</span>
-<span class="co">#&gt;   ( ) Reading Active Beavers</span>
-<span class="co">#&gt;   ( ) Reading High MPG Cars</span>
-<span class="co">#&gt;   ( ) Reading Mean C02 Uptake</span>
-<span class="co">#&gt; * Initialising workbook using template Excel/template.xlsx</span>
-<span class="co">#&gt; * Populating 1 with report information</span>
-<span class="co">#&gt; * Writing 3 datasets to workbook</span>
-<span class="co">#&gt;   ( ) Writing Active Beavers</span>
-<span class="co">#&gt;   ( ) Writing High MPG Cars</span>
-<span class="co">#&gt;   ( ) Writing Mean C02 Uptake</span>
-<span class="co">#&gt; * Saving workbook as Outputs/2021-08-25-jscott4.xlsx</span>
+<span class="co">#&gt; -- Creating new Excel report [1m[36m2021-08-25-jscott4.xlsx[39m[22m ---------------------------</span>
+<span class="co">#&gt; * Reading SQL scripts from [1m[36mSQL[39m[22m</span>
+<span class="co">#&gt; * Reading [1m[36m3[39m[22m datasets from [1m[36m:memory:[39m[22m</span>
+<span class="co">#&gt;   ( ) Reading [1m[36mActive Beavers[39m[22m</span>
+<span class="co">#&gt;   ( ) Reading [1m[36mHigh MPG Cars[39m[22m</span>
+<span class="co">#&gt;   ( ) Reading [1m[36mMean C02 Uptake[39m[22m</span>
+<span class="co">#&gt; * Initialising workbook using template [1m[36mdefault[39m[22m</span>
+<span class="co">#&gt; * Populating [1m[36m1[39m[22m with report information</span>
+<span class="co">#&gt; * Writing [1m[36m3[39m[22m datasets to workbook</span>
+<span class="co">#&gt;   ( ) Writing [1m[36mActive Beavers[39m[22m</span>
+<span class="co">#&gt;   ( ) Writing [1m[36mHigh MPG Cars[39m[22m</span>
+<span class="co">#&gt;   ( ) Writing [1m[36mMean C02 Uptake[39m[22m</span>
+<span class="co">#&gt; * Saving workbook as [1m[36mOutputs/2021-08-25-jscott4.xlsx[39m[22m</span>
 <span class="co">#&gt; v File saved successfully!</span></code></pre></div>
 <p>We can see that a file <code>Outputs/2021-08-25-jscott4.xlsx</code> has been created. Let’s check the report to see what’s been written on each sheet. Notice that the sheets have been given the same names as our SQL scripts:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
@@ -211,7 +218,8 @@
 <span class="co"># Generate a second report using transformations</span>
 <span class="va">report_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/nice_filename.html">nice_filename</a></span><span class="op">(</span>dir <span class="op">=</span> <span class="st">"Outputs"</span><span class="op">)</span>
 <span class="fu"><a href="../reference/report_from_sql.html">report_from_sql</a></span><span class="op">(</span>
-  <span class="va">report_2</span>, sql_connection <span class="op">=</span> <span class="va">db</span>, transformers <span class="op">=</span> <span class="va">transformers</span>
+  <span class="va">report_2</span>, sql_connection <span class="op">=</span> <span class="va">db</span>, transformers <span class="op">=</span> <span class="va">transformers</span>, 
+  file_template <span class="op">=</span> <span class="cn">NULL</span>
 <span class="op">)</span></code></pre></div>
 <p>Looking at this second report, (conveniently named <code>Outputs/2021-08-25-jscott4_01.xlsx</code>), we can confirm that the transformations have been applied:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
@@ -250,7 +258,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by First Last.</p>
+  <p>Developed by Jacob Scott.</p>
 </div>
 
 <div class="pkgdown">

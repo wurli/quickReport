@@ -86,47 +86,4 @@ We now have what we need to create a {quickReport} report from SQL: a
 project with the correct file structure and an SQL database. With these in
 place, we can create a fairly decent report by simply running
 `report_from_sql()`:
-<!--
 
-```{r}
-report_1 <- nice_filename(dir = "Outputs")
-report_from_sql(report_1, sql_connection = db, file_template = NULL)
-```
-
-We can see that a file ``r report_1`` has been created. Let's check the report
-to see what's been written on each sheet. Notice that the sheets have been 
-given the same names as our SQL scripts:
-```{r}
-read_worksheets(report_1)[-1]
-```
-
-# Using Transformers
-{quickReport} allows the use of 'transformer' functions when producing a report.
-These can be very useful when reporting from SQL, as many manipulations are much
-easier to do using R code instead of SQL. Let's rerun the report, but this time 
-we'll apply some transformers too:
-```{r, R.options=list(qr.quiet = TRUE)}
-library(dplyr, warn.conflicts = FALSE)
-
-# 'High MPG Cars' gets its own transformer that adds an extra column, while 
-# the unnamed function will be applied to all other datasets
-transformers <- list(
-  "High MPG Cars" = function(data) data %>% mutate(best_mpg = mpg == max(mpg)),
-  function(data) data %>% mutate(across(where(is.numeric), round))
-)
-
-# Generate a second report using transformations
-report_2 <- nice_filename(dir = "Outputs")
-report_from_sql(
-  report_2, sql_connection = db, transformers = transformers, 
-  file_template = NULL
-)
-```
-
-Looking at this second report, (conveniently named ``r report_2``), we can 
-confirm that the transformations have been applied:
-```{r}
-read_worksheets(report_2)[-1]
-```
-
--->
