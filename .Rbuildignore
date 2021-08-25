@@ -1,0 +1,12 @@
+^repautomate\.Rproj$
+^\.Rproj\.user$
+^LICENSE\.md$
+^README\.Rmd$
+^cran-comments\.md$
+^\.github$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^templates$
+^data-raw$
+^vignettes/articles$

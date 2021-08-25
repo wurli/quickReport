@@ -1,0 +1,124 @@
+---
+title: "Report Example"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Report Example}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+dir <- file.path(tempdir(), "example-report")
+dir.create(dir)
+knitr::opts_knit$set(root.dir = dir)
+```
+
+This vignette will run through the steps needed to produce an Excel report from 
+SQL using {quickReport}. We'll be looking at folder structures a bit, so we'll
+load {fs} too:
+```{r load_pkgs}
+library(quickReport)
+library(fs)
+```
+
+# Setting up a report project
+Now we'll use `create_report()` to set up a project with the recommended folder
+structure:
+```{r, results='hide', message=FALSE}
+create_report(path = ".")
+```
+
+`create_report()` creates a project with several non-standard folders:
+
+- `Excel` is used for storing Excel templates
+- `SQL` is used for storing SQL scripts that will be used to create a report
+- `Outputs` is the default folder where {quickReport} will try to place created
+reports.
+
+```{r}
+dir_tree()
+```
+
+# Setting up SQL
+{quickReport} provides a function to create an example SQLite database in memory
+containing 3 base datasets: `mtcars`, `beaver1` and `C02`.
+```{r}
+db <- example_db()
+RSQLite::dbListTables(db)
+```
+
+Let's add some SQL scripts to the SQL directory. These are the files that will 
+be used to create a report when we run `report_from_sql()`
+```{r make_sql_scripts}
+# Define some SQL queries
+queries <- list(
+  "Active Beavers.sql" = "select * from beaver1 where activ = 1;",
+  "High MPG Cars.sql"  = "select mpg, cyl, disp from mtcars where mpg >= 30;",
+  "Mean C02 Uptake.sql" = "
+    select Treatment, avg(uptake) as uptake
+    from CO2
+    group by Treatment;
+  "
+)
+
+# Write the queries to the SQL directory
+for (q in names(queries)) {
+  readr::write_file(queries[[q]], file.path("SQL", q))
+}
+```
+
+Let's check the SQL directory to confirm the files were written correctly:
+```{r view_sql_dir}
+dir_tree("SQL")
+```
+
+# Running the Report
+We now have what we need to create a {quickReport} report from SQL: a
+project with the correct file structure and an SQL database. With these in
+place, we can create a fairly decent report by simply running
+`report_from_sql()`:
+```{r}
+report_1 <- nice_filename(dir = "Outputs")
+report_from_sql(report_1, sql_connection = db)
+```
+
+We can see that a file ``r report_1`` has been created. Let's check the report
+to see what's been written on each sheet. Notice that the sheets have been 
+given the same names as our SQL scripts:
+```{r}
+read_worksheets(report_1)[-1]
+```
+
+# Using Transformers
+{quickReport} allows the use of 'transformer' functions when producing a report.
+These can be very useful when reporting from SQL, as many manipulations are much
+easier to do using R code instead of SQL. Let's rerun the report, but this time 
+we'll apply some transformers too:
+```{r, R.options=list(qr.quiet = TRUE)}
+library(dplyr, warn.conflicts = FALSE)
+
+# 'High MPG Cars' gets its own transformer that adds an extra column, while 
+# the unnamed function will be applied to all other datasets
+transformers <- list(
+  "High MPG Cars" = function(data) data %>% mutate(best_mpg = mpg == max(mpg)),
+  function(data) data %>% mutate(across(where(is.numeric), round))
+)
+
+# Generate a second report using transformations
+report_2 <- nice_filename(dir = "Outputs")
+report_from_sql(
+  report_2, sql_connection = db, transformers = transformers
+)
+```
+
+Looking at this second report, (conveniently named ``r report_2``), we can 
+confirm that the transformations have been applied:
+```{r}
+read_worksheets(report_2)[-1]
+```
+

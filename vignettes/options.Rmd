@@ -1,0 +1,22 @@
+---
+title: "Options"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Options}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+There are several options in {quickReport} that you may want to adjust:
+
+- `qr.default_template` can be used to specify the default workbook to use
+as a template. This can be useful if you often need to create reports from 
+the same template.
+- `qr.marker` can be used to change the marker that indicates where data will
+be placed in template worksheets. By default, the value is `"!data"`.
+- `qr.quiet` can be used to suppress messages from `{quickReport}`
+functions, though it is recommended that you leave them on.
+- `qr.user` can be used to set the username recorded in the 'Creator' and
+'Last Modified By' workbook fields. See `?get_user` for more info.
+
+If you are unsure how to set options in R, see `?options` for more information.
