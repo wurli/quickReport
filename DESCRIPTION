@@ -1,13 +1,13 @@
 Package: quickReport
-Title: What the Package Does (One Line, Title Case)
+Title: Generate Excel reports from SQL using R
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Jacob",
+           family = "Scott",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+           email = "jscott2718@gmail.com")
+Description: Create Excel reports directly from R, optionally using a directory
+    containing SQL scripts.
 License: MIT + file LICENSE
 Suggests: 
     dplyr,
