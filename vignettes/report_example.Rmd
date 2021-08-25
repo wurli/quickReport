@@ -16,6 +16,10 @@ knitr::opts_chunk$set(
 dir <- file.path(tempdir(), "example-report")
 dir.create(dir)
 knitr::opts_knit$set(root.dir = dir)
+
+library(usethis)
+library(RSQLite)
+library(DBI)
 ```
 
 This vignette will run through the steps needed to produce an Excel report from 
