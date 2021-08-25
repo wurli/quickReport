@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 # quickReport
 
 <!-- badges: start -->
+[![R-CMD-check](https://github.com/wurli/quickReport/workflows/R-CMD-check/badge.svg)](https://github.com/wurli/quickReport/actions)
 <!-- badges: end -->
 
 {quickReport} provides a set of functions that enable you to painlessly create a
