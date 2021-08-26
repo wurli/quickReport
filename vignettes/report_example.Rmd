@@ -33,25 +33,28 @@ library(fs)
 # Setting up a report project
 Now we'll use `create_report()` to set up a project with the recommended folder
 structure:
-```{r, results='hide', message=FALSE}
+```{r create_proj, results='hide', message=FALSE}
 create_report(path = ".")
 ```
 
-`create_report()` creates a project with several non-standard folders:
+`create_report()` creates a project with several non-standard files and folders:
 
-- `Excel` is used for storing Excel templates
-- `SQL` is used for storing SQL scripts that will be used to create a report
+- `Excel` is used for storing Excel templates (and comes with one you can edit)
 - `Outputs` is the default folder where {quickReport} will try to place created
-reports.
+- `SQL` is used for storing SQL scripts that will be used to create a report
+- `config.yml` can be used to configure an SQL database (powered by the
+[{config}](https://rstudio.github.io/config/) package)
+- `run-report.R` is an R script containing the minimal code needed to run the 
+report.
 
-```{r}
+```{r inspect_dir_1}
 dir_tree()
 ```
 
 # Setting up SQL
 {quickReport} provides a function to create an example SQLite database in memory
 containing 3 base datasets: `mtcars`, `beaver1` and `C02`.
-```{r}
+```{r setup_sql_db}
 db <- example_db()
 RSQLite::dbListTables(db)
 ```
@@ -86,15 +89,15 @@ We now have what we need to create a {quickReport} report from SQL: a
 project with the correct file structure and an SQL database. With these in
 place, we can create a fairly decent report by simply running
 `report_from_sql()`:
-```{r}
-report_1 <- nice_filename(dir = "Outputs")
+```{r run_report_1}
+report_1 <- nice_filename("demo-report", dir = "Outputs")
 report_from_sql(report_1, sql_connection = db, file_template = NULL)
 ```
 
 We can see that a file ``r report_1`` has been created. Let's check the report
 to see what's been written on each sheet. Notice that the sheets have been 
 given the same names as our SQL scripts:
-```{r}
+```{r inspect_report_1}
 read_worksheets(report_1)[-1]
 ```
 
@@ -103,7 +106,7 @@ read_worksheets(report_1)[-1]
 These can be very useful when reporting from SQL, as many manipulations are much
 easier to do using R code instead of SQL. Let's rerun the report, but this time 
 we'll apply some transformers too:
-```{r, R.options=list(qr.quiet = TRUE)}
+```{r run_report_2, R.options=list(qr.quiet = TRUE)}
 library(dplyr, warn.conflicts = FALSE)
 
 # 'High MPG Cars' gets its own transformer that adds an extra column, while 
@@ -114,7 +117,7 @@ transformers <- list(
 )
 
 # Generate a second report using transformations
-report_2 <- nice_filename(dir = "Outputs")
+report_2 <- nice_filename("demo-report-transformed", dir = "Outputs")
 report_from_sql(
   report_2, sql_connection = db, transformers = transformers, 
   file_template = NULL
@@ -123,7 +126,12 @@ report_from_sql(
 
 Looking at this second report, (conveniently named ``r report_2``), we can 
 confirm that the transformations have been applied:
-```{r}
+```{r inspect_report_2}
 read_worksheets(report_2)[-1]
+```
+
+To finish, let's inspect the directory once more to see how our report looks:
+```{r inspect_dir_2}
+dir_tree()
 ```
 

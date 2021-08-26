@@ -8,6 +8,13 @@
 
 <title>Create a pretty table of information — info_table • quickReport</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -42,6 +49,7 @@
 <meta property="og:title" content="Create a pretty table of information — info_table" />
 <meta property="og:description" content="These functions help you create a readable table of information, intended to
 be used to populate a coversheet in an Excel report." />
+<meta property="og:image" content="/logo.png" />
 
 
 
@@ -182,26 +190,26 @@ first letter and the replacement of underscores with spaces.</p></td>
   first_category <span class='op'>=</span> <span class='va'>letters</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span>,
   second_category <span class='op'>=</span> <span class='st'>"d"</span>
 <span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 4 x 2</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 4 x 2</span>
 #&gt;   category        values
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> First category  a     
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> </span><span style='color: #BB0000;'>NA</span><span>              b     
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> </span><span style='color: #BB0000;'>NA</span><span>              c     
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> Second category d     </div><div class='input'>
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> 
+#&gt; <span style='color: #BCBCBC;'>1</span> First category  a     
+#&gt; <span style='color: #BCBCBC;'>2</span> <span style='color: #BB0000;'>NA</span>              b     
+#&gt; <span style='color: #BCBCBC;'>3</span> <span style='color: #BB0000;'>NA</span>              c     
+#&gt; <span style='color: #BCBCBC;'>4</span> Second category d     </div><div class='input'>
 <span class='fu'>default_info_table</span><span class='op'>(</span>
   data_included <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Blackberry"</span>, <span class='st'>"Apple"</span>, <span class='st'>"Orange"</span><span class='op'>)</span>,
   author <span class='op'>=</span> <span class='st'>"Jacob"</span>
 <span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 6 x 2</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 2</span>
 #&gt;   category         values    
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Data included    Blackberry
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> </span><span style='color: #BB0000;'>NA</span><span>               Apple     
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> </span><span style='color: #BB0000;'>NA</span><span>               Orange    
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> Data exported by JSCOTT4   
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> Exported on      2021-08-26
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> Author           Jacob     </div></span></pre>
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>     
+#&gt; <span style='color: #BCBCBC;'>1</span> Data included    Blackberry
+#&gt; <span style='color: #BCBCBC;'>2</span> <span style='color: #BB0000;'>NA</span>               Apple     
+#&gt; <span style='color: #BCBCBC;'>3</span> <span style='color: #BB0000;'>NA</span>               Orange    
+#&gt; <span style='color: #BCBCBC;'>4</span> Data exported by JSCOTT4   
+#&gt; <span style='color: #BCBCBC;'>5</span> Exported on      2021-08-26
+#&gt; <span style='color: #BCBCBC;'>6</span> Author           Jacob     </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

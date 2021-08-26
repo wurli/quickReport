@@ -1,15 +1,11 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+# pkgdown <img src="man/figures/logo.png" align="right" style = "width:250px;height:250px" />
+
 # quickReport
 
 <!-- badges: start -->
-
-[![R-CMD-check](https://github.com/wurli/quickReport/workflows/R-CMD-check/badge.svg)](https://github.com/wurli/quickReport/actions)
-[![CRAN
-status](https://www.r-pkg.org/badges/version/quickReport)](https://CRAN.R-project.org/package=quickReport)
-[![Codecov test
-coverage](https://codecov.io/gh/wurli/quickReport/branch/master/graph/badge.svg)](https://codecov.io/gh/wurli/quickReport?branch=master)
 <!-- badges: end -->
 
 {quickReport} provides a set of functions that enable you to painlessly
@@ -67,3 +63,9 @@ in Excel by using {quickReport}.
 [{openxlsx}](https://ycphs.github.io/openxlsx/). I highly recommend it
 if you’re looking for a more flexible way of manipulating Excel files
 from R.
+
+# Bug Reports / Feature Requests
+
+Please post these as [github
+issues](https://github.com/wurli/quickReport/issues). Alternatively you
+can [tweet me](https://twitter.com/_wurli), but I might not reply.

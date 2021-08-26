@@ -6,6 +6,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Generate Excel reports from SQL using R • quickReport</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
@@ -14,6 +20,7 @@
 <script src="pkgdown.js"></script><meta property="og:title" content="Generate Excel reports from SQL using R">
 <meta property="og:description" content="Create Excel reports directly from R, optionally using a directory
     containing SQL scripts.">
+<meta property="og:image" content="/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -83,11 +90,16 @@
       </header><div class="row">
   <div class="contents col-md-9">
 
-<div id="quickreport" class="section level1">
+<div id="pkgdown-" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#quickreport" class="anchor"></a>quickReport</h1></div>
+<a href="#pkgdown-" class="anchor"></a>pkgdown <img src="reference/figures/logo.png" align="right" style="width:250px;height:250px">
+</h1></div>
+</div>
+<div id="quickreport" class="section level1">
+<h1 class="hasAnchor">
+<a href="#quickreport" class="anchor"></a>quickReport</h1>
 <!-- badges: start -->
-
+<!-- badges: end -->
 <p>{quickReport} provides a set of functions that enable you to painlessly create a single Excel workbook containing multiple datasets from the comfort of your R session. The datasets you use can either be a list of <code>data.frame</code>s, or alternatively the data can be read using a directory containing SQL scripts. See <code><a href="articles/report_example.html">vignette("report_example")</a></code> for an example of a start-to-finish report.</p>
 <div id="templates" class="section level2">
 <h2 class="hasAnchor">
@@ -122,6 +134,11 @@
 <a href="#credit" class="anchor"></a>Credit</h1>
 <p>{quickReport} relies almost entirely on the wonderful package <a href="https://ycphs.github.io/openxlsx/">{openxlsx}</a>. I highly recommend it if you’re looking for a more flexible way of manipulating Excel files from R.</p>
 </div>
+<div id="bug-reports--feature-requests" class="section level1">
+<h1 class="hasAnchor">
+<a href="#bug-reports--feature-requests" class="anchor"></a>Bug Reports / Feature Requests</h1>
+<p>Please post these as <a href="https://github.com/wurli/quickReport/issues">github issues</a>. Alternatively you can <a href="https://twitter.com/_wurli">tweet me</a>, but I might not reply.</p>
+</div>
 
   </div>
 
@@ -147,15 +164,7 @@
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
-<ul class="list-unstyled">
-<li><a href="https://github.com/wurli/quickReport/actions"><img src="https://github.com/wurli/quickReport/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://CRAN.R-project.org/package=quickReport"><img src="https://www.r-pkg.org/badges/version/quickReport" alt="CRAN status"></a></li>
-<li><a href="https://codecov.io/gh/wurli/quickReport?branch=master"><img src="https://codecov.io/gh/wurli/quickReport/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
-</ul>
-</div>
-</div>
+  </div>
 </div>
 
 
