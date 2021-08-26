@@ -11,4 +11,4 @@
 ^data-raw$
 ^vignettes/articles$
 ^codecov\.yml$
-^hex\.R$
+^hex-sticker\.R$
