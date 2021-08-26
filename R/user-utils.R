@@ -100,13 +100,12 @@ get_user <- function(default = getOption("qr.user")) {
 
 #' Helper for reading an entire .xlsx file
 #'
-#' @param file A filepath
+#' @param wb A filepath or `openxlsx` workbook object
 #' @param ... Passed to `openxlsx::readWorkbook()`
 #'
 #' @return A list of data.frames
 #' @export
-read_worksheets <- function(file, ...) {
-  wb <- openxlsx::loadWorkbook(file)
+read_worksheets <- function(wb, ...) {
 
   sheets <- names(wb)
   content <- lapply(sheets, openxlsx::readWorkbook, xlsxFile = wb, ...)

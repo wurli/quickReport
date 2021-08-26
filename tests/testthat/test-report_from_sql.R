@@ -3,16 +3,16 @@ test_that("report_from_sql() works", {
   db <- example_db()
 
   queries <- list(
-    "Miles per Gallon by Weight.sql" = "
-      select mpg, wt from mtcars
-    ",
     "Active Beavers.sql" = "
       select * from beaver1 where activ = 1
     ",
-    "Mean C02 Uptake.sql" = "
+    "Mean CO2 Uptake.sql" = "
       select Plant, Treatment, avg(uptake) as uptake
       from CO2
       group by Plant, Treatment
+    ",
+    "Miles per Gallon by Weight.sql" = "
+      select mpg, wt from mtcars
     "
   )
 
@@ -29,9 +29,11 @@ test_that("report_from_sql() works", {
   )
 
   sheets <- names(wb)
-
-  lapply(sheets, function(s) {
-    expect_snapshot_value(openxlsx::readWorkbook(wb, s))
-  })
+  data <- read_worksheets(wb)
+  
+  expect_equal(names(data), c(
+    "Cover Sheet", "Active Beavers", "Mean CO2 Uptake", 
+    "Miles per Gallon by Weight"
+  ))
 
 })

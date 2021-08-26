@@ -4,12 +4,12 @@
 \alias{read_worksheets}
 \title{Helper for reading an entire .xlsx file}
 \usage{
-read_worksheets(file, ...)
+read_worksheets(wb, ...)
 }
 \arguments{
-\item{file}{A filepath}
-
 \item{...}{Passed to \code{openxlsx::readWorkbook()}}
+
+\item{file}{A filepath}
 }
 \value{
 A list of data.frames

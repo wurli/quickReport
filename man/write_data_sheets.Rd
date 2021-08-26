@@ -25,7 +25,8 @@ indicate where the tables should be placed. This value will be the
 upper-left corner of the table.}
 
 \item{remove_template}{Logical, whether the template sheet should be removed
-from the final report.}
+from the final report. Does not have an effect if \code{default_data_sheet}
+is \code{NULL}.}
 }
 \value{
 An \code{openxlsx} workbook object

@@ -9,7 +9,8 @@
 #'   indicate where the tables should be placed. This value will be the
 #'   upper-left corner of the table.
 #' @param remove_template Logical, whether the template sheet should be removed
-#'   from the final report.
+#'   from the final report. Does not have an effect if `default_data_sheet`
+#'   is `NULL`.
 #'
 #' @return An `openxlsx` workbook object
 write_data_sheets <- function(wb, datasets,
@@ -22,7 +23,34 @@ write_data_sheets <- function(wb, datasets,
   notify("Writing %d datasets to workbook", length(datasets))
 
   sheets <- names(wb)
+  
+  if (length(default_data_sheet) == 0) {
+    
+    use_default <- FALSE
+    
+  } else {
+    
+    use_default <- TRUE
+    
+    default <- default_data_sheet
+    if (length(default) > 1) {
+      stop("`default_data_sheet` should be `NULL` or have length 1")
+    }
+    if (is.numeric(default)) {
+      default <- sheets[default]
+    }
+    if (is.na(default_data_sheet) || !default %in% sheets) {
+      notify(paste(
+        "Sheet '%s' not found in template workbook, defaulting to blank",
+        "template for data sheets"
+        ), default_data_sheet, .type = "alert_warning"
+      )
+      use_default <- FALSE
+    }
+    
+  }
 
+  
   cli::cli_ul()
 
   for (d in names(datasets)) {
@@ -30,8 +58,8 @@ write_data_sheets <- function(wb, datasets,
     notify("Writing %s", d, .type = "li")
 
     if (!d %in% sheets) {
-      if (default_data_sheet %in% sheets) {
-        openxlsx::cloneWorksheet(wb, d, default_data_sheet)
+      if (use_default) {
+        openxlsx::cloneWorksheet(wb, d, default)
       } else {
         openxlsx::addWorksheet(wb, sheetName = d)
       }
@@ -84,8 +112,8 @@ write_data_sheets <- function(wb, datasets,
 
   cli::cli_end()
 
-  if (default_data_sheet %in% sheets && remove_template) {
-    openxlsx::removeWorksheet(wb, default_data_sheet)
+  if (use_default && remove_template) {
+    openxlsx::removeWorksheet(wb, default)
   }
 
   wb

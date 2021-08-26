@@ -30,7 +30,7 @@ Imports:
     odbc,
     cli,
     config,
-    openxlsx,
+    openxlsx (>= 4.2.2),
     DBI,
     readr,
     methods,
