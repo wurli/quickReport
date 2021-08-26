@@ -7,9 +7,9 @@
 read_worksheets(wb, ...)
 }
 \arguments{
-\item{...}{Passed to \code{openxlsx::readWorkbook()}}
+\item{wb}{A filepath or \code{openxlsx} workbook object}
 
-\item{file}{A filepath}
+\item{...}{Passed to \code{openxlsx::readWorkbook()}}
 }
 \value{
 A list of data.frames
