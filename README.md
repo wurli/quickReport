@@ -1,15 +1,9 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# quickReport <img src="man/figures/logo.png" align="right" style = "width:250px;height:250px" />
+# quickReport <img src="man/figures/logo.png" align="right" width="200" />
 
 <!-- badges: start -->
-
-[![R-CMD-check](https://github.com/wurli/quickReport/workflows/R-CMD-check/badge.svg)](https://github.com/wurli/quickReport/actions)
-[![CRAN
-status](https://www.r-pkg.org/badges/version/quickReport)](https://CRAN.R-project.org/package=quickReport)
-[![Codecov test
-coverage](https://codecov.io/gh/wurli/quickReport/branch/master/graph/badge.svg)](https://codecov.io/gh/wurli/quickReport?branch=master)
 <!-- badges: end -->
 
 {quickReport} provides a set of functions that enable you to painlessly
