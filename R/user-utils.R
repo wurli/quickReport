@@ -106,10 +106,16 @@ get_user <- function(default = getOption("qr.user")) {
 #' @return A list of data.frames
 #' @export
 read_worksheets <- function(wb, ...) {
-
+  
+  
+  if (is.character(wb)) {
+    wb <- openxlsx::loadWorkbook(wb, )
+  }
+  
   sheets <- names(wb)
   content <- lapply(sheets, openxlsx::readWorkbook, xlsxFile = wb, ...)
   names(content) <- sheets
-
+  
   content
 }
+
