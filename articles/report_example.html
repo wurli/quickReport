@@ -191,26 +191,7 @@
 <p>We can see that a file <code>Outputs/2021-08-26-runner-demo-report.xlsx</code> has been created. Let’s check the report to see what’s been written on each sheet. Notice that the sheets have been given the same names as our SQL scripts:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/read_worksheets.html">read_worksheets</a></span><span class="op">(</span><span class="va">report_1</span><span class="op">)</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span>
-<span class="co">#&gt; $`Active Beavers`</span>
-<span class="co">#&gt;   day time  temp activ</span>
-<span class="co">#&gt; 1 346 1730 37.07     1</span>
-<span class="co">#&gt; 2 346 1950 37.10     1</span>
-<span class="co">#&gt; 3 346 2150 37.53     1</span>
-<span class="co">#&gt; 4 346 2230 37.25     1</span>
-<span class="co">#&gt; 5 346 2300 37.24     1</span>
-<span class="co">#&gt; 6 347  340 37.15     1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $`High MPG Cars`</span>
-<span class="co">#&gt;    mpg cyl disp</span>
-<span class="co">#&gt; 1 32.4   4 78.7</span>
-<span class="co">#&gt; 2 30.4   4 75.7</span>
-<span class="co">#&gt; 3 33.9   4 71.1</span>
-<span class="co">#&gt; 4 30.4   4 95.1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $`Mean C02 Uptake`</span>
-<span class="co">#&gt;    Treatment   uptake</span>
-<span class="co">#&gt; 1    chilled 23.78333</span>
-<span class="co">#&gt; 2 nonchilled 30.64286</span></code></pre></div>
+<span class="co">#&gt; list()</span></code></pre></div>
 </div>
 <div id="using-transformers" class="section level1">
 <h1 class="hasAnchor">
@@ -235,26 +216,7 @@
 <p>Looking at this second report, (conveniently named <code>Outputs/2021-08-26-runner-demo-report-transformed.xlsx</code>), we can confirm that the transformations have been applied:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/read_worksheets.html">read_worksheets</a></span><span class="op">(</span><span class="va">report_2</span><span class="op">)</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span>
-<span class="co">#&gt; $`Active Beavers`</span>
-<span class="co">#&gt;   day time temp activ</span>
-<span class="co">#&gt; 1 346 1730   37     1</span>
-<span class="co">#&gt; 2 346 1950   37     1</span>
-<span class="co">#&gt; 3 346 2150   38     1</span>
-<span class="co">#&gt; 4 346 2230   37     1</span>
-<span class="co">#&gt; 5 346 2300   37     1</span>
-<span class="co">#&gt; 6 347  340   37     1</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $`High MPG Cars`</span>
-<span class="co">#&gt;    mpg cyl disp best_mpg</span>
-<span class="co">#&gt; 1 32.4   4 78.7    FALSE</span>
-<span class="co">#&gt; 2 30.4   4 75.7    FALSE</span>
-<span class="co">#&gt; 3 33.9   4 71.1     TRUE</span>
-<span class="co">#&gt; 4 30.4   4 95.1    FALSE</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $`Mean C02 Uptake`</span>
-<span class="co">#&gt;    Treatment uptake</span>
-<span class="co">#&gt; 1    chilled     24</span>
-<span class="co">#&gt; 2 nonchilled     31</span></code></pre></div>
+<span class="co">#&gt; list()</span></code></pre></div>
 <p>To finish, let’s inspect the directory once more to see how our report looks:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="http://fs.r-lib.org/reference/dir_tree.html">dir_tree</a></span><span class="op">(</span><span class="op">)</span>
