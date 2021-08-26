@@ -101,8 +101,7 @@
 <a href="#setting-up-a-report-project" class="anchor"></a>Setting up a report project</h1>
 <p>Now we’ll use <code><a href="../reference/create_report.html">create_report()</a></code> to set up a project with the recommended folder structure:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/create_report.html">create_report</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"."</span><span class="op">)</span>
-<span class="co">#&gt; Warning: Could not create Excel template: object 'ActiveSheet' not found</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/create_report.html">create_report</a></span><span class="op">(</span>path <span class="op">=</span> <span class="st">"."</span><span class="op">)</span></code></pre></div>
 <p><code><a href="../reference/create_report.html">create_report()</a></code> creates a project with several non-standard folders:</p>
 <ul>
 <li>
@@ -116,6 +115,7 @@
 <code class="sourceCode R"><span class="fu"><a href="http://fs.r-lib.org/reference/dir_tree.html">dir_tree</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; .</span>
 <span class="co">#&gt; ├── Excel</span>
+<span class="co">#&gt; │   └── template.xlsx</span>
 <span class="co">#&gt; ├── Outputs</span>
 <span class="co">#&gt; ├── R</span>
 <span class="co">#&gt; ├── SQL</span>
@@ -159,6 +159,91 @@
 <h1 class="hasAnchor">
 <a href="#running-the-report" class="anchor"></a>Running the Report</h1>
 <p>We now have what we need to create a {quickReport} report from SQL: a project with the correct file structure and an SQL database. With these in place, we can create a fairly decent report by simply running <code><a href="../reference/report_from_sql.html">report_from_sql()</a></code>:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">report_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/nice_filename.html">nice_filename</a></span><span class="op">(</span>dir <span class="op">=</span> <span class="st">"Outputs"</span><span class="op">)</span>
+<span class="fu"><a href="../reference/report_from_sql.html">report_from_sql</a></span><span class="op">(</span><span class="va">report_1</span>, sql_connection <span class="op">=</span> <span class="va">db</span>, file_template <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; ── Creating new Excel report [1m[36m2021-08-26-runner.xlsx[39m[22m ────────────────────────────</span>
+<span class="co">#&gt; • Reading SQL scripts from [1m[36mSQL[39m[22m</span>
+<span class="co">#&gt; • Reading [1m[36m3[39m[22m datasets from [1m[36m:memory:[39m[22m</span>
+<span class="co">#&gt;   • Reading [1m[36mActive Beavers[39m[22m</span>
+<span class="co">#&gt;   • Reading [1m[36mHigh MPG Cars[39m[22m</span>
+<span class="co">#&gt;   • Reading [1m[36mMean C02 Uptake[39m[22m</span>
+<span class="co">#&gt; • Initialising workbook using template [1m[36mdefault[39m[22m</span>
+<span class="co">#&gt; • Populating [1m[36m1[39m[22m with report information</span>
+<span class="co">#&gt; • Writing [1m[36m3[39m[22m datasets to workbook</span>
+<span class="co">#&gt;   • Writing [1m[36mActive Beavers[39m[22m</span>
+<span class="co">#&gt;   • Writing [1m[36mHigh MPG Cars[39m[22m</span>
+<span class="co">#&gt;   • Writing [1m[36mMean C02 Uptake[39m[22m</span>
+<span class="co">#&gt; • Saving workbook as [1m[36mOutputs/2021-08-26-runner.xlsx[39m[22m</span>
+<span class="co">#&gt; ✔ File saved successfully!</span></code></pre></div>
+<p>We can see that a file <code>Outputs/2021-08-26-runner.xlsx</code> has been created. Let’s check the report to see what’s been written on each sheet. Notice that the sheets have been given the same names as our SQL scripts:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/read_worksheets.html">read_worksheets</a></span><span class="op">(</span><span class="va">report_1</span><span class="op">)</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span>
+<span class="co">#&gt; $`Active Beavers`</span>
+<span class="co">#&gt;   day time  temp activ</span>
+<span class="co">#&gt; 1 346 1730 37.07     1</span>
+<span class="co">#&gt; 2 346 1950 37.10     1</span>
+<span class="co">#&gt; 3 346 2150 37.53     1</span>
+<span class="co">#&gt; 4 346 2230 37.25     1</span>
+<span class="co">#&gt; 5 346 2300 37.24     1</span>
+<span class="co">#&gt; 6 347  340 37.15     1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $`High MPG Cars`</span>
+<span class="co">#&gt;    mpg cyl disp</span>
+<span class="co">#&gt; 1 32.4   4 78.7</span>
+<span class="co">#&gt; 2 30.4   4 75.7</span>
+<span class="co">#&gt; 3 33.9   4 71.1</span>
+<span class="co">#&gt; 4 30.4   4 95.1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $`Mean C02 Uptake`</span>
+<span class="co">#&gt;    Treatment   uptake</span>
+<span class="co">#&gt; 1    chilled 23.78333</span>
+<span class="co">#&gt; 2 nonchilled 30.64286</span></code></pre></div>
+</div>
+<div id="using-transformers" class="section level1">
+<h1 class="hasAnchor">
+<a href="#using-transformers" class="anchor"></a>Using Transformers</h1>
+<p>{quickReport} allows the use of ‘transformer’ functions when producing a report. These can be very useful when reporting from SQL, as many manipulations are much easier to do using R code instead of SQL. Let’s rerun the report, but this time we’ll apply some transformers too:</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span>, warn.conflicts <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+
+<span class="co"># 'High MPG Cars' gets its own transformer that adds an extra column, while </span>
+<span class="co"># the unnamed function will be applied to all other datasets</span>
+<span class="va">transformers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+  <span class="st">"High MPG Cars"</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span><span class="op">)</span> <span class="va">data</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>best_mpg <span class="op">=</span> <span class="va">mpg</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">mpg</span><span class="op">)</span><span class="op">)</span>,
+  <span class="kw">function</span><span class="op">(</span><span class="va">data</span><span class="op">)</span> <span class="va">data</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span>, <span class="va">round</span><span class="op">)</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="co"># Generate a second report using transformations</span>
+<span class="va">report_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/nice_filename.html">nice_filename</a></span><span class="op">(</span>dir <span class="op">=</span> <span class="st">"Outputs"</span><span class="op">)</span>
+<span class="fu"><a href="../reference/report_from_sql.html">report_from_sql</a></span><span class="op">(</span>
+  <span class="va">report_2</span>, sql_connection <span class="op">=</span> <span class="va">db</span>, transformers <span class="op">=</span> <span class="va">transformers</span>, 
+  file_template <span class="op">=</span> <span class="cn">NULL</span>
+<span class="op">)</span></code></pre></div>
+<p>Looking at this second report, (conveniently named <code>Outputs/2021-08-26-runner_01.xlsx</code>), we can confirm that the transformations have been applied:</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/read_worksheets.html">read_worksheets</a></span><span class="op">(</span><span class="va">report_2</span><span class="op">)</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span>
+<span class="co">#&gt; $`Active Beavers`</span>
+<span class="co">#&gt;   day time temp activ</span>
+<span class="co">#&gt; 1 346 1730   37     1</span>
+<span class="co">#&gt; 2 346 1950   37     1</span>
+<span class="co">#&gt; 3 346 2150   38     1</span>
+<span class="co">#&gt; 4 346 2230   37     1</span>
+<span class="co">#&gt; 5 346 2300   37     1</span>
+<span class="co">#&gt; 6 347  340   37     1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $`High MPG Cars`</span>
+<span class="co">#&gt;    mpg cyl disp best_mpg</span>
+<span class="co">#&gt; 1 32.4   4 78.7    FALSE</span>
+<span class="co">#&gt; 2 30.4   4 75.7    FALSE</span>
+<span class="co">#&gt; 3 33.9   4 71.1     TRUE</span>
+<span class="co">#&gt; 4 30.4   4 95.1    FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $`Mean C02 Uptake`</span>
+<span class="co">#&gt;    Treatment uptake</span>
+<span class="co">#&gt; 1    chilled     24</span>
+<span class="co">#&gt; 2 nonchilled     31</span></code></pre></div>
 </div>
   </div>
 
