@@ -1,6 +1,6 @@
 Package: quickReport
 URL: https://github.com/wurli/quickReport, https://wurli.github.io/quickReport/
-Title: Generate Excel reports from SQL using R
+Title: Generate Excel Reports from SQL using R
 Version: 0.1.0
 Authors@R: 
     person(given = "Jacob",
