@@ -163,7 +163,7 @@
 <code class="sourceCode R"><span class="va">report_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/nice_filename.html">nice_filename</a></span><span class="op">(</span>dir <span class="op">=</span> <span class="st">"Outputs"</span><span class="op">)</span>
 <span class="fu"><a href="../reference/report_from_sql.html">report_from_sql</a></span><span class="op">(</span><span class="va">report_1</span>, sql_connection <span class="op">=</span> <span class="va">db</span>, file_template <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; -- Creating new Excel report [1m[36m2021-08-25-jscott4.xlsx[39m[22m ---------------------------</span>
+<span class="co">#&gt; -- Creating new Excel report [1m[36m2021-08-26-jscott4.xlsx[39m[22m ---------------------------</span>
 <span class="co">#&gt; * Reading SQL scripts from [1m[36mSQL[39m[22m</span>
 <span class="co">#&gt; * Reading [1m[36m3[39m[22m datasets from [1m[36m:memory:[39m[22m</span>
 <span class="co">#&gt;   ( ) Reading [1m[36mActive Beavers[39m[22m</span>
@@ -175,9 +175,9 @@
 <span class="co">#&gt;   ( ) Writing [1m[36mActive Beavers[39m[22m</span>
 <span class="co">#&gt;   ( ) Writing [1m[36mHigh MPG Cars[39m[22m</span>
 <span class="co">#&gt;   ( ) Writing [1m[36mMean C02 Uptake[39m[22m</span>
-<span class="co">#&gt; * Saving workbook as [1m[36mOutputs/2021-08-25-jscott4.xlsx[39m[22m</span>
+<span class="co">#&gt; * Saving workbook as [1m[36mOutputs/2021-08-26-jscott4.xlsx[39m[22m</span>
 <span class="co">#&gt; v File saved successfully!</span></code></pre></div>
-<p>We can see that a file <code>Outputs/2021-08-25-jscott4.xlsx</code> has been created. Let’s check the report to see what’s been written on each sheet. Notice that the sheets have been given the same names as our SQL scripts:</p>
+<p>We can see that a file <code>Outputs/2021-08-26-jscott4.xlsx</code> has been created. Let’s check the report to see what’s been written on each sheet. Notice that the sheets have been given the same names as our SQL scripts:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/read_worksheets.html">read_worksheets</a></span><span class="op">(</span><span class="va">report_1</span><span class="op">)</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span>
 <span class="co">#&gt; $`Active Beavers`</span>
@@ -221,7 +221,7 @@
   <span class="va">report_2</span>, sql_connection <span class="op">=</span> <span class="va">db</span>, transformers <span class="op">=</span> <span class="va">transformers</span>, 
   file_template <span class="op">=</span> <span class="cn">NULL</span>
 <span class="op">)</span></code></pre></div>
-<p>Looking at this second report, (conveniently named <code>Outputs/2021-08-25-jscott4_01.xlsx</code>), we can confirm that the transformations have been applied:</p>
+<p>Looking at this second report, (conveniently named <code>Outputs/2021-08-26-jscott4_01.xlsx</code>), we can confirm that the transformations have been applied:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/read_worksheets.html">read_worksheets</a></span><span class="op">(</span><span class="va">report_2</span><span class="op">)</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span>
 <span class="co">#&gt; $`Active Beavers`</span>
