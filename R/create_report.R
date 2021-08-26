@@ -68,13 +68,14 @@ create_report <- function(path,
 
   # Add a 'config.yml' file to the top level of the project
   config <- c(
-    'database:',
-    '  driver: "Name of SQL driver"',
-    '  server: "Name of server"',
-    '  database: "Name of database"',
-    '  uid: "Username"',
-    '  pwd: "Password"',
-    '  trusted: "yes/no"'
+    'default:',
+    '  database:',
+    '    driver: "Name of SQL driver"',
+    '    server: "Name of server"',
+    '    database: "Name of database"',
+    '    uid: "Username"',
+    '    pwd: "Password"',
+    '    trusted: "yes/no"'
   )
   usethis::ui_done("Creating {usethis::ui_path('config.yml')}")
   writeLines(config, "config.yml")
